@@ -86,7 +86,8 @@ def train_one_epoch(args, weights, train_loader, model, ema_model, view_model, o
 #         print('type(view_relevance): {}, view_relevance: {}'.format(type(view_relevance), view_relevance))
         data, bag_label = data.to(args.device), bag_label.to(args.device)
                 
-        
+        data = data.repeat(1, 1, 3, 1, 1)
+
         outputs, attentions = model(data)
         
         log_attentions = torch.log(attentions)
@@ -122,7 +123,6 @@ def train_one_epoch(args, weights, train_loader, model, ema_model, view_model, o
         else:
             raise NameError('Not supported ViewRegularization warmup schedule')
             
-        
         
         ViewRegularizationLoss = F.kl_div(input=log_attentions, target=predicted_relative_relevance, log_target=False, reduction='batchmean')
         

@@ -209,7 +209,7 @@ def create_view_model(args):
         raise NameError('?')
     
         
-    view_checkpoint = torch.load(args.view_checkpoint_path)
+    view_checkpoint = torch.load(args.view_checkpoint_path, map_location=torch.device('cpu'))
 
     # view_model.load_state_dict(view_checkpoint['ema_state_dict'])
     
@@ -225,7 +225,7 @@ def create_model(args):
 
     if args.MIL_checkpoint_path !='':
         print('!!!!!!!!!!!!!!!!!!!!!initializing from pretrained checkpoint!!!!!!!!!!!!!!!!!!!!!')
-        pretrained_dict = torch.load(args.MIL_checkpoint_path)
+        pretrained_dict = torch.load(args.MIL_checkpoint_path, map_location=torch.device('cpu'))
 
         #https://discuss.pytorch.org/t/dataparallel-changes-parameter-names-issue-with-load-state-dict/60211
         #rename tensor in the pretrained dict

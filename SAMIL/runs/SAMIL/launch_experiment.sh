@@ -41,8 +41,8 @@ export sampling_strategy='first_frame'
 export use_class_weights='True'
 
 
-export Pretrained='NoPretrain'
-# export Pretrained='Whole'
+# export Pretrained='NoPretrain'
+export Pretrained='Whole'
 # export Pretrained='FeatureExtractor1'
 export ViewRegularization_warmup_schedule_type='Linear'
 export optimizer_type='SGD'

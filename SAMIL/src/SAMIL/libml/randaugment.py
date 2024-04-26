@@ -54,7 +54,7 @@ def CutoutAbs(img, v, **kwarg):
     y1 = int(min(h, y0 + v))
     xy = (x0, y0, x1, y1)
     #gray
-    color = 127
+    color = (127,)
     # rgb
     # color = (127, 127, 127)
     img = img.copy()

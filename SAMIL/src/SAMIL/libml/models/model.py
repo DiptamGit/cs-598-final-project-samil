@@ -14,8 +14,8 @@ class SAMIL(nn.Module):
         self.num_classes = num_classes
         
         self.feature_extractor_part1 = nn.Sequential(
-            nn.Conv2d(1, 20, kernel_size=5),
-            # nn.Conv2d(3, 20, kernel_size=5),
+        #     nn.Conv2d(1, 20, kernel_size=5),
+            nn.Conv2d(3, 20, kernel_size=5),
             nn.ReLU(),
             nn.MaxPool2d(2, stride=2),
             nn.Conv2d(20, 50, kernel_size=5),
@@ -66,9 +66,9 @@ class SAMIL(nn.Module):
 
     def forward(self, x):
         
-#         print('Inside forward: input x shape: {}'.format(x.shape))
+        print('Inside forward: input x shape: {}'.format(x.shape))
         x = x.squeeze(0)
-#         print('Inside forward: after squeeze x shape: {}'.format(x.shape))
+        print('Inside forward: after squeeze x shape: {}'.format(x.shape))
 
         H = self.feature_extractor_part1(x)
 #         print('Inside forward: after feature_extractor_part1 H shape: {}'.format(H.shape))

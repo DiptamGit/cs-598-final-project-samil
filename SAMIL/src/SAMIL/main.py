@@ -209,9 +209,9 @@ def create_view_model(args):
         raise NameError('?')
     
         
-    view_checkpoint = torch.load(args.view_checkpoint_path, map_location=torch.device('cpu'))
+    view_checkpoint = torch.load(args.view_checkpoint_path)
 
-    # view_model.load_state_dict(view_checkpoint['ema_state_dict'])
+    view_model.load_state_dict(view_checkpoint['ema_state_dict'])
     
     view_model.eval()
     
@@ -225,7 +225,7 @@ def create_model(args):
 
     if args.MIL_checkpoint_path !='':
         print('!!!!!!!!!!!!!!!!!!!!!initializing from pretrained checkpoint!!!!!!!!!!!!!!!!!!!!!')
-        pretrained_dict = torch.load(args.MIL_checkpoint_path, map_location=torch.device('cpu'))
+        pretrained_dict = torch.load(args.MIL_checkpoint_path)
 
         #https://discuss.pytorch.org/t/dataparallel-changes-parameter-names-issue-with-load-state-dict/60211
         #rename tensor in the pretrained dict
@@ -497,6 +497,9 @@ def main(args, brief_summary):
 #     early_stopping = EarlyStopping(patience=400, initial_count=current_count)
 
     for epoch in tqdm(range(args.start_epoch, args.train_epoch)):
+        if epoch == 2:
+            print('manually breaking loop-->>')
+            break
         val_predictions_save_dict = dict()
         test_predictions_save_dict = dict()
         train_predictions_save_dict = dict()
@@ -719,9 +722,7 @@ if __name__=='__main__':
         args.device = device
         torch.backends.cudnn.benchmark = True
     else:
-        device = 'cpu'
-        args.device = device
-        # raise ValueError('Not Using GPU?')
+        raise ValueError('Not Using GPU?')
         
         
     logging.basicConfig(

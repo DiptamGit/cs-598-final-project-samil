@@ -66,9 +66,9 @@ class SAMIL(nn.Module):
 
     def forward(self, x):
         
-        print('Inside forward: input x shape: {}'.format(x.shape))
+        #print('Inside forward: input x shape: {}'.format(x.shape))
         x = x.squeeze(0)
-        print('Inside forward: after squeeze x shape: {}'.format(x.shape))
+        #print('Inside forward: after squeeze x shape: {}'.format(x.shape))
 
         H = self.feature_extractor_part1(x)
 #         print('Inside forward: after feature_extractor_part1 H shape: {}'.format(H.shape))

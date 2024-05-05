@@ -126,7 +126,8 @@ class EchoDataset(Dataset):
                     
                 for filename in all_TiffFilename_this_PatientStudy:
                     raw_png = Image.open(filename)
-                    png_array = np.array(raw_png)
+                    png_array = np.array(raw_png.convert(mode='RGB')) # Nidhi fix for RGB
+                    
                     this_PatientStudy_images.append(png_array)
 
                 this_PatientStudy_images = np.array(this_PatientStudy_images)
@@ -197,4 +198,3 @@ class EchoDataset(Dataset):
 
         
         return bag_image, DiagnosisLabel
-

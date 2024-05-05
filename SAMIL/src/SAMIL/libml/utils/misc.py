@@ -86,7 +86,7 @@ def train_one_epoch(args, weights, train_loader, model, ema_model, view_model, o
 #         print('type(view_relevance): {}, view_relevance: {}'.format(type(view_relevance), view_relevance))
         data, bag_label = data.to(args.device), bag_label.to(args.device)
                 
-        data = data.repeat(1, 1, 3, 1, 1)
+        # data = data.repeat(1, 1, 3, 1, 1)
 
         outputs, attentions = model(data)
         
@@ -172,7 +172,7 @@ def eval_model(args, data_loader, raw_model, ema_model, epoch):
 #             print('EVAL type(bag_label): {}, bag_label: {}'.format(type(bag_label), bag_label))
 
             data, bag_label = data.to(args.device), bag_label.to(args.device)
-            
+            # data = data.repeat(1, 1, 3, 1, 1)
             raw_outputs, raw_attention_weights = raw_model(data)
             ema_outputs, ema_attention_weights = ema_model(data)
 #             print('target is {}, raw_outputs is: {}, ema_outputs is {}'.format(bag_label, raw_outputs, ema_outputs))

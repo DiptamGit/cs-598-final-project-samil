@@ -14,7 +14,6 @@ This repository contains a Jupyter notebook used to reproduce the results of a p
 First, clone this repository to your local machine using Git:
 ```bash
 git clone [URL of the repository]
-cd [repository-name]
 ```
 
 ### Set Up a Virtual Environment (optional but recommended)

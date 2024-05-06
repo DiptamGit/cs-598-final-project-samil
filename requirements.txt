@@ -1,0 +1,9 @@
+absl-py==2.1.0
+matplotlib==3.8.2
+numpy==1.23.5
+pandas==1.5.2
+Pillow==10.2.0
+torch==2.2.2+cu121
+torchvision==0.17.2
+seaborn==0.13.2
+tqdm==4.66.2
